@@ -20,6 +20,10 @@ void ApplicationLifecycle::on_init(){
 //on foobar2000 exit
 void ApplicationLifecycle::on_quit(){
 	console::info("foo_linkitunes destroying...");
+	if (iITunes != NULL){
+		iITunes->Release();
+		lcm->releaseCOMObjects();
+	}
 	CoUninitialize();
 }
 
@@ -50,10 +54,12 @@ void ApplicationLifecycle::releaseCOMObjects(){
 
 void IventReceivedCallback(long ev){
 	std::string str;
+	static_api_ptr_t<playback_control> pc;
 	switch (ev)
 	{
 	case 3:
 		console::info("iTunes play stopped");
+		pc->pause(true);
 		break;
 	case 1:
 		console::info("iTunes song changed");
@@ -76,6 +82,7 @@ void IventReceivedCallback(long ev){
 		console::info("iTunes exit.");
 		iITunes->Release();
 		lcm->releaseCOMObjects();
+		iITunes = NULL;
 		_beginthread(WaitUntiliTunesProcessDie, 0, NULL);
 		break;
 	default:
