@@ -5,3 +5,4 @@ using namespace std;
 std::string ConvertBSTRToMBS(BSTR bstr);
 std::string ConvertWCSToMBS(const wchar_t* pstr, long wslen);
 BSTR ConvertMBSToBSTR(const std::string& str);
+std::wstring s2ws(const std::string& s);

@@ -24,3 +24,5 @@ void IventReceivedCallback(long ev);
 ApplicationLifecycle *lcm;
 void iTunesProcessWatcher(LPVOID pParam);
 void WaitUntiliTunesProcessDie(LPVOID pParam);
+TCHAR m_Path[MAX_PATH];
+char *mPathChar;

@@ -66,7 +66,7 @@ HRESULT STDMETHODCALLTYPE CITunesEventSink::Invoke(DISPID dispidMember, REFIID r
 	WORD wFlags, DISPPARAMS* pdispparams, VARIANT* pvarResult,
 	EXCEPINFO* pexcepinfo, UINT* puArgErr)
 {
-	if (dispidMember < 11 && OnEvent != NULL)
+	if (OnEvent != NULL)
 	{
 		//PostMessage(ccm->hParentWnd, ccm->WM_ITUNES, (WPARAM)dispidMember, 0);
 		OnEvent(dispidMember);
